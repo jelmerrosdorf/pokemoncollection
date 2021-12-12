@@ -8,5 +8,9 @@ use Illuminate\Http\Request;
 class PokemonController extends Controller
 
 {
-    
+    public function index()
+    {
+        $pokemons = Pokemon::all();
+        return view('pokemons.index', compact('pokemons'));
+    }
 }
