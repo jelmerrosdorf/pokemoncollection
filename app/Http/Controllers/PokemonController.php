@@ -14,6 +14,12 @@ class PokemonController extends Controller
         return view('pokemons.index', compact('pokemons'));
     }
 
+    public function show($id)
+    {
+        $pokemons = Pokemon::find($id);
+        return view('pokemons.show')->with('pokemon', $pokemons);
+    }
+
     public function create()
     {
         return view('pokemons.create');

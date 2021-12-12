@@ -37,6 +37,7 @@
                 <td>{{ $pokemon->type }}</td>
                 <td>
                     <form action="{{ route('pokemons.destroy',$pokemon) }}" method="POST">
+                        <a class="btn btn-info" href="{{ route('pokemons.show', $pokemon) }}">Show</a>
                         <a class="btn btn-primary" href="{{ route('pokemons.edit',$pokemon) }}">Edit</a>
                         @csrf
                         @method('DELETE')
