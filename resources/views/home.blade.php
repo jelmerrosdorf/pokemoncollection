@@ -20,4 +20,19 @@
         </div>
     </div>
 </div>
+
+<div class="container">
+    <div class="row justify-content-center" style="margin-top: 50px">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Pokemon') }}</div>
+                <div class="card-body">
+                        <div>
+                           <a href="pokemons">Go to Pokemon page!</a>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
