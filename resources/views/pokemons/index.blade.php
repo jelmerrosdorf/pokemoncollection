@@ -13,6 +13,23 @@
                 <a class="btn btn-success" href="{{ route('pokemons.create') }}"> Add new Pokemon</a>
             </div>
 
+            <div>
+                <div class="mx-auto float-right">
+                    <div class="">
+                        <form action="{{ route('pokemons.index') }}" method="GET" role="search">
+                            <div class="input-group">
+                            <span class="input-group-btn">
+                                <button class="btn btn-info" type="submit">Search</button>
+                                        <span class="fas fa-search"></span>
+                            </span>
+                                <input type="text" class="form-control mr-2" name="term" placeholder="Name or Type" id="term">
+                                <a href="{{ route('pokemons.index') }}" class="mt-1"></a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </div>

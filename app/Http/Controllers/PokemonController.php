@@ -8,9 +8,21 @@ use Illuminate\Http\Request;
 class PokemonController extends Controller
 
 {
-    public function index()
+    public function index(Request $request)
     {
-        $pokemons = Pokemon::all();
+        $pokemons = Pokemon::where([
+            ['name', '!=', Null],
+            ['type', '!=', Null],
+            [function ($query) use ($request) {
+                if (($term = $request->term)) {
+                    $query->orWhere('name', 'LIKE', '%' . $term . '%')->get();
+                    $query->orWhere('type', 'LIKE', '%' . $term . '%')->get();
+                }
+            }]
+        ])
+            ->orderBy("id", "asc")
+            ->paginate(10);
+
         return view('pokemons.index', compact('pokemons'));
     }
 
