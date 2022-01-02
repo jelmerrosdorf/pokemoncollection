@@ -10,7 +10,9 @@
             </div>
 
             <div class="pull-right">
+                @can('pokemons_create')
                 <a class="btn btn-success" href="{{ route('pokemons.create') }}"> Add new Pokemon</a>
+                @endcan
             </div>
 
             <div>
@@ -54,12 +56,20 @@
                 <td>{{ $pokemon->type }}</td>
                 <td>
                     <form action="{{ route('pokemons.destroy',$pokemon) }}" method="POST">
+
                         <a class="btn btn-info" href="{{ route('pokemons.show', $pokemon) }}">Show</a>
+
+                        @can('pokemons_edit')
                         <a class="btn btn-primary" href="{{ route('pokemons.edit',$pokemon) }}">Edit</a>
+                        @endcan
+
                         @csrf
                         @method('DELETE')
+                        @can('pokemons_delete')
                         <button type="submit" class="btn btn-danger">Release</button>
+                        @endcan
                     </form>
+
                 </td>
             </tr>
         @endforeach
