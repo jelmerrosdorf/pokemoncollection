@@ -34,11 +34,15 @@ class PokemonController extends Controller
 
     public function create()
     {
+        $this->authorize('pokemons_create');
+
         return view('pokemons.create');
     }
 
     public function store(Request $request)
     {
+        $this->authorize('pokemons_create');
+
         $request->validate([
             'name' => 'required',
             'image' => 'required',
@@ -59,11 +63,15 @@ class PokemonController extends Controller
 
     public function edit(Pokemon $pokemon)
     {
+        $this->authorize('pokemons_edit');
+
         return view('pokemons.edit',compact('pokemon'));
     }
 
     public function update(Request $request, Pokemon $pokemon)
     {
+        $this->authorize('pokemons_edit');
+
         $pokemon = Pokemon::find($pokemon->id);
         if (!$request->file('image') == ""){
             $pokemon->image = $request->file('image')->storePublicly('images', 'public');
@@ -86,6 +94,8 @@ class PokemonController extends Controller
 
     public function destroy(Pokemon $pokemon)
     {
+        $this->authorize('pokemons_delete');
+
         $pokemon->delete();
 
         return redirect()->route('pokemons.index')
