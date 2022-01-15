@@ -18,6 +18,7 @@ class CreatePokemonsTable extends Migration
             $table->string('name');
             $table->string('image');
             $table->string('type');
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }
