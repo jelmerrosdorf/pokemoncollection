@@ -29,5 +29,7 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('pokemons_create', function (User $user) { return $user->is_admin; } );
         Gate::define('pokemons_edit', function (User $user) { return $user->is_admin; } );
         Gate::define('pokemons_delete', function (User $user) { return $user->is_admin; } );
+
+        Gate::define('pokemons_status', function (User $user) {return $user->is_admin; } );
     }
 }

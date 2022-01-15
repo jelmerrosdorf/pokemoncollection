@@ -104,6 +104,8 @@ class PokemonController extends Controller
 
     public function updateStatus(Request $request)
     {
+        $this->authorize('pokemons_status');
+
         $pokemon = Pokemon::findOrFail($request->pokemon_id);
         $pokemon->status = $request->status;
         $pokemon->save();
