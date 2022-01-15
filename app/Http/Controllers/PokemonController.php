@@ -101,4 +101,13 @@ class PokemonController extends Controller
         return redirect()->route('pokemons.index')
             ->with('success','Pokemon released successfully');
     }
+
+    public function updateStatus(Request $request)
+    {
+        $pokemon = Pokemon::findOrFail($request->pokemon_id);
+        $pokemon->status = $request->status;
+        $pokemon->save();
+
+        return response()->json(['Status changed successfully!']);
+    }
 }

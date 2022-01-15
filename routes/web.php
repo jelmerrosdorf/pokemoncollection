@@ -26,3 +26,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('pokemons', PokemonController::class);
 });
+
+Route::post('/update-status', [PokemonController::class, 'updateStatus']);

@@ -1,5 +1,14 @@
 @extends('layouts.app')
 
+@section('head')
+    {{--    Ajax loading in --}}
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+
+    {{--    Cloudflare Toggle   --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.js"></script>
+@endsection
+
 @section('content')
     <div class="row">
 
@@ -47,6 +56,7 @@
             <th>Name</th>
             <th>Image</th>
             <th>Type</th>
+            <th>Obtainable</th>
             <th>Action</th>
         </tr>
         @foreach ($pokemons as $pokemon)
@@ -54,6 +64,10 @@
                 <td>{{ $pokemon->name }}</td>
                 <td><img src="{{ asset("storage/images/".$pokemon['image']) }}" alt="{{ $pokemon->name }}" height="250px" width="250px"></td>
                 <td>{{ $pokemon->type }}</td>
+                <td>
+                    <input type="checkbox" data-id="{{ $pokemon->id }}" name="status"
+                           class="js-switch" {{ $pokemon->status == 1 ? 'checked' : '' }}>
+                </td>
                 <td>
                     <form action="{{ route('pokemons.destroy',$pokemon) }}" method="POST">
 
@@ -75,5 +89,15 @@
         @endforeach
     </table>
 
+@endsection
+
+@section('script')
+    <script>
+        let elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+        elems.forEach(function(html) {
+            let newSlider = new Switchery(html,  { size: 'small' });
+        });
+    </script>
+    <script src="{{asset("js/slider.js")}}"></script>
 @endsection
 
