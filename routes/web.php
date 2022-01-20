@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PokemonController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,9 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::post('/update-status', [PokemonController::class, 'updateStatus']);
+
+Route::get('/profile', [UserController::class,'index']);
+
+Route::put('/profile/{username}',[UserController::class,'profileUpdate']);
+
+

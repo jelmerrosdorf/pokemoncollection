@@ -6,11 +6,14 @@
             <div class="pull-left">
                 <h2>Show this Pokemon!</h2>
             </div>
+            <br>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('pokemons.index') }}"> Back</a>
             </div>
         </div>
     </div>
+
+    <br>
 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">

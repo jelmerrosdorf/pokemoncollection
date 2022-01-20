@@ -6,9 +6,11 @@
             <div class="pull-left">
                 <h2>Edit this Pokemon!</h2>
             </div>
+            <br>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('pokemons.index') }}"> Back</a>
             </div>
+            <br>
         </div>
     </div>
 
@@ -50,6 +52,7 @@
             </div>
 
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                <br>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
 

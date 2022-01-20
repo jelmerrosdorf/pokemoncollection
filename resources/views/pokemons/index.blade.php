@@ -18,11 +18,15 @@
                 <h2>Pokemon, gotta catch 'em all!</h2>
             </div>
 
+            <br>
+
             <div class="pull-right">
                 @can('pokemons_create')
                 <a class="btn btn-success" href="{{ route('pokemons.create') }}"> Add new Pokemon</a>
                 @endcan
             </div>
+
+            <br>
 
             <div>
                 <div class="mx-auto float-right">
@@ -33,13 +37,15 @@
                                 <button class="btn btn-info" type="submit">Search</button>
                                         <span class="fas fa-search"></span>
                             </span>
-                                <input type="text" class="form-control mr-2" name="term" placeholder="Name or Type" id="term">
+                                <input type="text" style="width: 33.3%" name="term" placeholder="Name or Type" id="term">
                                 <a href="{{ route('pokemons.index') }}" class="mt-1"></a>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
+
+            <br>
 
         </div>
 
