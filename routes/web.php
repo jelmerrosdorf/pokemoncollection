@@ -34,4 +34,7 @@ Route::get('/profile', [UserController::class,'index']);
 
 Route::put('/profile/{username}',[UserController::class,'profileUpdate']);
 
+Route::post('/pokemon/caught',[PokemonController::class, 'caught'])->name('caught');
+Route::post('/pokemon/lost',[PokemonController::class, 'lost'])->name('lost');
+
 

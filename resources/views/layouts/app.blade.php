@@ -63,6 +63,7 @@
                                     <a class="dropdown-item" href="{{ url('home') }}">
                                         Home
                                     </a>
+
                                     <a class="dropdown-item" href="{{ url('profile') }}">
                                         Profile
                                     </a>

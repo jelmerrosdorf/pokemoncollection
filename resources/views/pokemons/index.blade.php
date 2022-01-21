@@ -62,6 +62,7 @@
             <th>Name</th>
             <th>Image</th>
             <th>Type</th>
+            <th>Caught</th>
             <th>Obtainable</th>
             <th>Action</th>
         </tr>
@@ -70,6 +71,27 @@
                 <td>{{ $pokemon->name }}</td>
                 <td><img src="{{ asset("storage/images/".$pokemon['image']) }}" alt="{{ $pokemon->name }}" height="250px" width="250px"></td>
                 <td>{{ $pokemon->type }}</td>
+                <td>
+                    <div>
+                        @if($pokemon->user()->find(Auth::id()))
+                            <form action="{{ route('lost', $pokemon)  }}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div>
+                                    <div>
+                                        <input type="id" id="id" name="id" value="{{$pokemon->id}}" hidden>
+                                        <button type="submit" class="btn btn-outline-warning">Caught!</button>
+                                    </div>
+                                </div>
+                            </form>
+                        @elseif($pokemon->user()->find(Auth::id()) === null)
+                            <form action="{{ route('caught', $pokemon)  }}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <input type="id" id="id" name="id" value="{{$pokemon->id}}" hidden>
+                                <button type="submit" class="btn btn-outline-success">Not yet!</button>
+                            </form>
+                        @endif
+                    </div>
+                </td>
                 <td>
                     <input type="checkbox" data-id="{{ $pokemon->id }}" name="status"
                            class="js-switch" {{ $pokemon->status == 1 ? 'checked' : '' }}>

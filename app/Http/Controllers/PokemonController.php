@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pokemon;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class PokemonController extends Controller
 
@@ -100,6 +101,22 @@ class PokemonController extends Controller
 
         return redirect()->route('pokemons.index')
             ->with('success','Pokemon released successfully');
+    }
+
+    public function caught(Request $request, Pokemon $pokemon){
+        $user = User::find(auth()->id());
+        $pokemon = Pokemon::find($request->input('id'));
+        $pokemon->save();
+        $pokemon->user()->attach($user);
+        return redirect()->back()->with('status', 'Pokemon has been caught!');
+    }
+
+    public function lost(Request $request, Pokemon $pokemon){
+        $user = User::find(auth()->id());
+        $pokemon = Pokemon::find($request->input('id'));
+        $pokemon->save();
+        $pokemon->user()->detach($user);
+        return redirect()->back()->with('status', 'Pokemon was lost...');
     }
 
     public function updateStatus(Request $request)
