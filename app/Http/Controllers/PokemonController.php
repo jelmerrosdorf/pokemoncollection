@@ -15,9 +15,9 @@ class PokemonController extends Controller
             ['name', '!=', Null],
             ['type', '!=', Null],
             [function ($query) use ($request) {
-                if (($term = $request->term)) {
-                    $query->orWhere('name', 'LIKE', '%' . $term . '%')->get();
-                    $query->orWhere('type', 'LIKE', '%' . $term . '%')->get();
+                if (($search = $request->search)) {
+                    $query->orWhere('name', 'LIKE', '%' . $search . '%')->get();
+                    $query->orWhere('type', 'LIKE', '%' . $search . '%')->get();
                 }
             }]
         ])
@@ -108,7 +108,7 @@ class PokemonController extends Controller
         $pokemon = Pokemon::find($request->input('id'));
         $pokemon->save();
         $pokemon->user()->attach($user);
-        return redirect()->back()->with('status', 'Pokemon has been caught!');
+        return redirect()->back()->with('success', 'Pokemon has been caught!');
     }
 
     public function lost(Request $request, Pokemon $pokemon){
@@ -116,7 +116,7 @@ class PokemonController extends Controller
         $pokemon = Pokemon::find($request->input('id'));
         $pokemon->save();
         $pokemon->user()->detach($user);
-        return redirect()->back()->with('status', 'Pokemon was lost...');
+        return redirect()->back()->with('failure', 'Pokemon was lost...');
     }
 
     public function updateStatus(Request $request)

@@ -15,22 +15,19 @@
 
     <br>
 
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                {{ $pokemon->name }}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <img src="{{ asset("storage/images/".$pokemon['image']) }}"  height="250px" width="250px">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                {{ $pokemon->type }}
-            </div>
-        </div>
-    </div>
+    <table class="table table-bordered">
+        <tr>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Type</th>
+        </tr>
+
+        <tr>
+            <td>{{ $pokemon->name }}</td>
+            <td style="width: 33.3%"><img src="{{ asset("storage/images/".$pokemon['image']) }}" alt="{{ $pokemon->name }}" height="250px" width="250px"></td>
+            <td>{{ $pokemon->type }}</td>
+        </tr>
+
+    </table>
 
 @endsection

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use \Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
@@ -13,8 +14,7 @@ class UserController extends Controller
 
         $team = Auth::user()->pokemon;
         if (count($team) < 2){
-            return back()->with('status', 'In order to edit your profile
-             you need a team of 2.');
+            return Redirect::to('home')->with('flashMessage', 'Catch 2 Pokemon first!');
         }
 
         if(Auth::user()){
@@ -38,9 +38,8 @@ class UserController extends Controller
             $user->name = $request['name'];
             $user->email = $request['email'];
             $user->save();
-            return back()->with('status','Profile Updated');
+            return Redirect::to('home')->with('statusMessage', 'Profile updated!');
         }
-        return back()->with('status', 'In order to edit your profile
-             you need a team of 2.');
+        return Redirect::to('home')->with('flashMessage', 'Catch 2 Pokemon first!');
     }
 }

@@ -35,9 +35,8 @@
                             <div class="input-group">
                             <span class="input-group-btn">
                                 <button class="btn btn-info" type="submit">Search</button>
-                                        <span class="fas fa-search"></span>
                             </span>
-                                <input type="text" style="width: 33.3%" name="term" placeholder="Name or Type" id="term">
+                                <input type="text" style="width: 33.3%" name="search" placeholder="Name or Type" id="search">
                                 <a href="{{ route('pokemons.index') }}" class="mt-1"></a>
                             </div>
                         </form>
@@ -55,6 +54,10 @@
         <div class="alert alert-success">
             <p>{{ $message }}</p>
         </div>
+    @elseif($message = Session::get('failure'))
+        <div class="alert alert-danger">
+            <p>{{ $message }}</p>
+        </div>
     @endif
 
     <table class="table table-bordered">
@@ -69,7 +72,7 @@
         @foreach ($pokemons as $pokemon)
             <tr>
                 <td>{{ $pokemon->name }}</td>
-                <td><img src="{{ asset("storage/images/".$pokemon['image']) }}" alt="{{ $pokemon->name }}" height="250px" width="250px"></td>
+                <td style="width: 25%"><img src="{{ asset("storage/images/".$pokemon['image']) }}" alt="{{ $pokemon->name }}" height="250px" width="250px"></td>
                 <td>{{ $pokemon->type }}</td>
                 <td>
                     <div>
