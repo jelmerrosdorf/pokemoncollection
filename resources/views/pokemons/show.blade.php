@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Show this Pokemon!</h2>
+                <h2>Who's that Pokemon?!</h2>
             </div>
             <br>
             <div class="pull-right">

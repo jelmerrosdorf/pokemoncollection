@@ -9,20 +9,23 @@ use App\Models\User;
 class PokemonController extends Controller
 
 {
-    public function index(Request $request)
+    public function index()
     {
-        $pokemons = Pokemon::where([
-            ['name', '!=', Null],
-            ['type', '!=', Null],
-            [function ($query) use ($request) {
-                if (($search = $request->search)) {
-                    $query->orWhere('name', 'LIKE', '%' . $search . '%')->get();
-                    $query->orWhere('type', 'LIKE', '%' . $search . '%')->get();
-                }
-            }]
-        ])
-            ->orderBy("id", "asc")
-            ->paginate(10);
+        if(request('filter')){
+            $filter = request('filter');
+            $pokemons = Pokemon::where ('type', 'LIKE', '%' .  $filter . '%')
+                ->get();
+        }
+
+        elseif(request('search')){
+            $search = request('search');
+            $pokemons = Pokemon::where ('name', 'LIKE', '%' . $search . '%')
+                ->get();
+        }
+
+        else{
+            $pokemons = Pokemon::all();
+        }
 
         return view('pokemons.index', compact('pokemons'));
     }
@@ -100,7 +103,7 @@ class PokemonController extends Controller
         $pokemon->delete();
 
         return redirect()->route('pokemons.index')
-            ->with('success','Pokemon released successfully');
+            ->with('failure','Pokemon released successfully');
     }
 
     public function caught(Request $request, Pokemon $pokemon){

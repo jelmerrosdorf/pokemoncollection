@@ -31,13 +31,45 @@
             <div>
                 <div class="mx-auto float-right">
                     <div class="">
+                        <form action="{{ route('pokemons.index') }}" method="GET">
+                            <div class="input-group" style="width: 33.3%">
+                                <button type="submit" class="btn btn-primary float-right">Filter</button>
+                                <select name="filter" id="filter" class="form-control input-lg dynamic" data-dependent="state">
+                                    <option selected disabled>Type</option>
+                                    <option value="Normal">Normal</option>
+                                    <option value="Fire">Fire</option>
+                                    <option value="Water">Water</option>
+                                    <option value="Grass">Grass</option>
+                                    <option value="Flying">Flying</option>
+                                    <option value="Fighting">Fighting</option>
+                                    <option value="Poison">Poison</option>
+                                    <option value="Electric">Electric</option>
+                                    <option value="Ground">Ground</option>
+                                    <option value="Rock">Rock</option>
+                                    <option value="Psychic">Psychic</option>
+                                    <option value="Ice">Ice</option>
+                                    <option value="Bug">Bug</option>
+                                    <option value="Ghost">Ghost</option>
+                                    <option value="Steel">Steel</option>
+                                    <option value="Dragon">Dragon</option>
+                                    <option value="Dark ">Dark </option>
+                                    <option value="Fairy">Fairy</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <div>
+                <div class="mx-auto float-right">
+                    <div class="">
                         <form action="{{ route('pokemons.index') }}" method="GET" role="search">
                             <div class="input-group">
-                            <span class="input-group-btn">
                                 <button class="btn btn-info" type="submit">Search</button>
-                            </span>
-                                <input type="text" style="width: 33.3%" name="search" placeholder="Name or Type" id="search">
-                                <a href="{{ route('pokemons.index') }}" class="mt-1"></a>
+                                <input type="text" style="width: 33.3%" name="search" placeholder="Name" id="search">
                             </div>
                         </form>
                     </div>
